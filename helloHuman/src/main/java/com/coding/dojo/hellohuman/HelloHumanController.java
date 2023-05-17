@@ -1,10 +1,11 @@
 package com.coding.dojo.hellohuman;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+//@RestController
+@Controller
 public class HelloHumanController {
 	
 	@RequestMapping("/")
@@ -34,6 +35,11 @@ public class HelloHumanController {
 			return "Hello Mr/Mrs " + lastName;
 		} 
 		return "Hello " + firstName + " " + lastName;
+	}
+	
+	@RequestMapping("/test") 
+	public String test() {
+		return "demo.jsp";
 	}
 
 }
