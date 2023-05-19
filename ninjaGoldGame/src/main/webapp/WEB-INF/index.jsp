@@ -13,9 +13,19 @@
 </head>
 <body>
 
-	<div class="d-flex gap-3 w-25 m-5">
-		<label class="form-label w-50">Your gold:</label>
-		<input type="number" class="form-control" value="0" disabled/>
+	<div class="d-flex justify-content-between m-5">
+		<div class="d-flex align-items-center gap-1 w-25">
+			<p class="form-label">Your gold:</p>
+			<div class="text-center w-25 rounded form-control bg-light">
+				<c:if test="${gold == null}">
+					<c:out value="0"/>	
+				</c:if>
+				<c:if test="${gold != null}">				
+					<c:out value="${gold}"/>
+				</c:if>
+			</div>
+		</div>
+		<a href="/reset" class="btn btn-secondary">Reset Game</a>
 	</div>
 	<main class="d-flex gap-4 flex-wrap m-5">
 		<form action="/gold/farm" method="post" class="mx-auto text-center p-3 border border-dark card">
@@ -35,14 +45,19 @@
 		</form>
 		<form action="/gold/quest" method="post" class="mx-auto text-center p-3 border border-dark card">
 			<h3>Quest</h3>
-			<p>(earns/takes 0-50 gold)</p>
-			<input type="submit" value="Find Gold!" class="btn btn-warning"/>
+			<p>(earns/loses 0-50 gold)</p>
+			<input type="submit" value="Risk It!" class="btn btn-warning"/>
+		</form>
+		<form action="/gold/spa" method="post" class="mx-auto text-center p-3 border border-dark card">
+			<h3>Spa</h3>
+			<p>(loses 5-20 gold)</p>
+			<input type="submit" value="Spend Gold!" class="btn btn-warning"/>
 		</form>
 	</main>
 	<div class="m-5">
-		<label for="activity" class="form-label">Activities:</label>
-		<textarea name="activity" class="form-control" cols="30" rows="10" disabled>
-			<c:forEach var="each" items="${activityLog}">
+		<p class="form-label">Activities:</p>
+		<textarea class="form-control p-3 bg-light" rows="10">
+			<c:forEach var="each" items="${activity}">
 				<c:out value="${each}"/>
 			</c:forEach>
 		</textarea>
